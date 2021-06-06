@@ -9,23 +9,22 @@ module.exports.getMovies = (req, res, next) => {
     .catch(next);
 };
 
-/* check 403 */
 module.exports.deleteMovie = (req, res, next) => {
-  Movie.findById(req.params.cardId)
+  Movie.findById(req.params.movieId)
     .then((movie) => {
       if (!movie) {
-        throw (new NotFoundError('Запрашиваемая карточка не найдена'));
+        throw (new NotFoundError('Запрашиваемый фильм не найден'));
       } else if (movie.owner.toString() !== req.user._id) {
         throw new ForbiddenError(
-          'Эту карточку может удалить только владелец',
+          'Этот фильм может удалить только владелец',
         );
       }
-      Movie.findByIdAndRemove(req.params.cardId)
+      Movie.findByIdAndRemove(req.params.movieId)
         .then((movieRemove) => res.status(200).send(movieRemove));
     })
     .catch((err) => {
       if (err.name === 'CastError') {
-        throw new BadRequestError('Указан не верный id карточки');
+        throw new BadRequestError('Указан не верный id фильма');
       } else {
         next(err);
       }
@@ -59,11 +58,12 @@ module.exports.createMovie = (req, res, next) => {
     nameEN,
     thumbnail,
     movieId,
+    owner: req.user._id
   })
     .then((movie) => res.status(201).send(movie))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        throw new BadRequestError('Введены некорректные данные');
+        throw new BadRequestError(err);
       }
     })
     .catch(next);

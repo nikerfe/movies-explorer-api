@@ -35,7 +35,7 @@ module.exports.createUser = (req, res, next) => {
     email, password, name,
   } = req.body;
   if (!email || !password) {
-    throw new BadRequestError('Введенные данные почты или пароля некорректны');
+    throw new BadRequestError('Введены некорректные данные');
   }
 
   bcrypt.hash(req.body.password, 10)
