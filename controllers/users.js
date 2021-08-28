@@ -16,6 +16,7 @@ module.exports.getUser = (req, res, next) => {
           {
             email: user.email,
             name: user.name,
+            _id: user._id,
           },
         );
       } else {
