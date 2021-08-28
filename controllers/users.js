@@ -12,13 +12,7 @@ module.exports.getUser = (req, res, next) => {
   User.findById(req.user._id)
     .then((user) => {
       if (user) {
-        res.status(200).send(
-          {
-            email: user.email,
-            name: user.name,
-            _id: user._id,
-          },
-        );
+        res.status(200).send(user);
       } else {
         throw new NotFoundError('Запрашиваемый пользователь не найден');
       }
