@@ -58,7 +58,7 @@ module.exports.createMovie = (req, res, next) => {
     nameEN,
     thumbnail,
     movieId,
-    owner: req.user._id
+    owner: req.user._id,
   })
     .then((movie) => res.status(201).send(movie))
     .catch((err) => {

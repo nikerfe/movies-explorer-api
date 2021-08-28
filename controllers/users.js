@@ -15,8 +15,9 @@ module.exports.getUser = (req, res, next) => {
         res.status(200).send(
           {
             email: user.email,
-            name: user.name
-          }
+            name: user.name,
+            _id: user._id,
+          },
         );
       } else {
         throw new NotFoundError('Запрашиваемый пользователь не найден');
@@ -86,7 +87,7 @@ module.exports.updateUser = (req, res, next) => {
       if (user) {
         res.status(200).send({
           email: user.email,
-          name: user.name
+          name: user.name,
         });
       }
     })

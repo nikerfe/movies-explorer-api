@@ -30,8 +30,8 @@ module.exports.validateMovie = celebrate({
     trailer: Joi.string().required().pattern(/https?:\/\/(www\.)?[-a-zA-Z0-9-@:%._\\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()&\-[\]@:;!$'%_+*,.~#?&/=]*)/),
     nameRU: Joi.string().required(),
     nameEN: Joi.string().required(),
-    thumbnail:Joi.string().required().pattern(/https?:\/\/(www\.)?[-a-zA-Z0-9-@:%._\\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()&\-[\]@:;!$'%_+*,.~#?&/=]*)/),
-    movieId: Joi.number().required()
+    thumbnail: Joi.string().required().pattern(/https?:\/\/(www\.)?[-a-zA-Z0-9-@:%._\\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()&\-[\]@:;!$'%_+*,.~#?&/=]*)/),
+    movieId: Joi.number().required(),
   }),
 });
 
